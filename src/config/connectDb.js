@@ -1,11 +1,17 @@
 const { Sequelize } = require("sequelize");
+const path = require("path");
+const env = process.env.NODE_ENV || "development";
 
-// Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize("clinics", "postgres", "123456789", {
-  host: "localhost",
-  port: 5432,
-  dialect: "postgres",
-});
+const config = require(path.join(__dirname, "..", "config", "configDB.json"))[
+  env
+];
+
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config
+);
 
 const connectDB = async () => {
   try {
