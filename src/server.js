@@ -27,7 +27,7 @@ app.use(
 );
 
 //router
-app.use(require("./routes/index"));
+app.use("/api", require("./routes/index"));
 
 // Error Handling Middleware called
 app.use((req, res, next) => {

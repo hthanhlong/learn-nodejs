@@ -32,6 +32,7 @@ const serviceLogin = async (body) => {
   tokenObject.refreshToken = refreshToken;
   const response = {
     status: "Logged in",
+    roles: [isUser.roleId],
     accessToken: accessToken,
     refreshToken: refreshToken,
   };
