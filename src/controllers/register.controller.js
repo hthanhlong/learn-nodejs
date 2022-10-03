@@ -1,14 +1,17 @@
-const { serviceCreateUser } = require("../services/register.services");
+const { serviceCreateUser } = require("../services/register.service");
 
-const createUser = async (req, res, next) => {
+const createUserController = async (req, res, next) => {
   const { body } = req;
-  console.log("body", body);
-  await serviceCreateUser(body);
+  try {
+    await serviceCreateUser(body);
+  } catch (error) {
+    console.log("error", error);
+  }
   res.status(201).json({
     massage: "success",
   });
 };
 
 module.exports = {
-  createUser,
+  createUserController,
 };

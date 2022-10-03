@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 5000;
 const cors = require("cors");
-const connectDB = require("./src/config/connectDb");
+const connectDB = require("./config/connectDb");
 const dotenv = require("dotenv");
 dotenv.config();
 const helmet = require("helmet");
@@ -27,7 +27,7 @@ app.use(
 );
 
 //router
-app.use(require("./src/routes/index"));
+app.use(require("./routes/index"));
 
 // Error Handling Middleware called
 app.use((req, res, next) => {
