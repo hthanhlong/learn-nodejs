@@ -1,11 +1,7 @@
 const express = require("express");
+const { createUser } = require("../controllers/register.controller");
 const registerRoute = express.Router();
 
-registerRoute.get("/", (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "api ok register",
-  });
-});
+registerRoute.post("/", createUser);
 
 module.exports = registerRoute;
