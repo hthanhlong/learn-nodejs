@@ -1,8 +1,9 @@
 const db = require("../models/index.js");
 
 const serviceGetAllUsers = async () => {
-  if (!data) return null;
-  const users = await db.User.findAll();
+  const users = await db.User.findAll({
+    attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+  });
   if (!users) return null;
   return users;
 };

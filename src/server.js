@@ -13,7 +13,7 @@ const compression = require("compression");
 connectDB();
 
 //middleware
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("combined"));

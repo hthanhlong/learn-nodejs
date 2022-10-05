@@ -6,7 +6,7 @@ const refreshTokenController = async (req, res, next) => {
   // if refresh token exists
   const result = await serviceRefreshToken(refreshToken);
   if (result) {
-    res.status(200).json(response);
+    res.status(200).json(result);
   } else {
     res.status(404).send("Invalid request");
   }

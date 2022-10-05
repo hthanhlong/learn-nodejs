@@ -3,7 +3,7 @@ const db = require("../models/index.js");
 const _CONF = require("../config/index");
 const jwt = require("jsonwebtoken");
 const tokenObject = {};
-
+const payload = {};
 const serviceLogin = async (body) => {
   const { email, password } = body;
   const isUser = await db.User.findOne({
@@ -16,10 +16,8 @@ const serviceLogin = async (body) => {
   );
   if (!isMatchedPassword) return null;
 
-  const payload = {
-    username: isUser.email,
-    role: isUser.roleId,
-  };
+  payload.username = isUser?.email;
+  payload.role = isUser?.roleId;
 
   const accessToken = jwt.sign(payload, _CONF.SECRET, {
     expiresIn: _CONF.tokenLife,
@@ -43,7 +41,7 @@ const serviceLogin = async (body) => {
 const serviceRefreshToken = async (refreshToken) => {
   if (tokenObject.refreshToken !== refreshToken) return null;
 
-  const accessToken = jwt.sign(user, _CONF.SECRET, {
+  const accessToken = jwt.sign(payload, _CONF.SECRET, {
     expiresIn: _CONF.tokenLife,
   });
   const response = {
