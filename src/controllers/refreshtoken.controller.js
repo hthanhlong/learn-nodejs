@@ -8,7 +8,7 @@ const refreshTokenController = async (req, res, next) => {
   if (result) {
     res.status(200).json(result);
   } else {
-    res.status(404).send("Invalid request");
+    res.status(400).send("Invalid request");
   }
 };
 

@@ -3,11 +3,13 @@ const {
   refreshTokenController,
 } = require("../controllers/refreshtoken.controller");
 const router = express.Router();
+
+// Routes
 const loginRoute = require("./login");
 const registerRoute = require("./register");
 const userRoute = require("./users");
-
 //
+
 router.use("/login", loginRoute);
 router.use("/register", registerRoute);
 router.use("/users", userRoute);

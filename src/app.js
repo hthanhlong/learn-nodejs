@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 5000;
 const cors = require("cors");
 const connectDB = require("./config/connectDb");
 const dotenv = require("dotenv");
@@ -13,7 +12,7 @@ const compression = require("compression");
 connectDB();
 
 //middleware
-app.use(cors({ origin: true }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("combined"));
@@ -29,11 +28,4 @@ app.use(
 //router
 app.use("/api", require("./routes/index"));
 
-// Error Handling Middleware called
-app.use((req, res, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
-
-app.listen(port, () => console.log("app listen on port ====> ", port));
+module.exports = app;

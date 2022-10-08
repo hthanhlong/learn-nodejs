@@ -5,7 +5,9 @@ const createUserController = async (req, res, next) => {
   try {
     await serviceCreateUser(body);
   } catch (error) {
-    console.log("error", error);
+    res.status(400).json({
+      massage: "failed",
+    });
   }
   res.status(201).json({
     massage: "success",

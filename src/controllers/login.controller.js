@@ -8,7 +8,7 @@ const loginController = async (req, res, next) => {
   if (result) {
     return res.status(201).json({ status: "success", data: result });
   } else {
-    return res.status(403).json({ elements: "Login failed!!!" });
+    return res.status(400).json({ elements: "Login failed!!!" });
   }
 };
 

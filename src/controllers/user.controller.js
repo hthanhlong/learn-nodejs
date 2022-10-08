@@ -11,7 +11,7 @@ const userController = async (req, res, next) => {
       });
     }
   } catch (error) {
-    res.status(401).json({
+    res.status(400).json({
       massage: "failed",
     });
   }
