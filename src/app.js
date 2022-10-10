@@ -10,7 +10,7 @@ const compression = require("compression");
 const createError = require("http-errors");
 
 // connect DB
-connectDB();
+// connectDB();
 
 //middleware
 app.use(cors({ origin: "*" }));
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
   });
 });
 
-// handle error from server
+// middleware---handle error from server
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     status: err.status || 500,
