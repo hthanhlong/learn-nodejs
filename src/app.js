@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -10,7 +11,7 @@ const compression = require("compression");
 const createError = require("http-errors");
 
 // connect DB
-// connectDB();
+connectDB();
 
 //middleware
 app.use(cors({ origin: "*" }));
@@ -31,14 +32,11 @@ app.use("/api", require("./routes/index"));
 
 // handle - Not Found
 app.use((req, res, next) => {
-  res.status(404).json({
-    status: 404,
-    message: " Not Found",
-  });
+  next(createError(404, "Not Found"));
 });
 
 // middleware---handle error from server
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(err.status || 500).json({
     status: err.status || 500,
     message: err.message || "",
