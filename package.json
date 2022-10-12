@@ -9,10 +9,10 @@
     "postinstall": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{html,ts,scss}": [
+    "src/**/*.{html,js,scss}": [
       "prettier --write"
     ],
-    "src/**/*.ts": [
+    "src/**/*.js": [
       "eslint --fix"
     ]
   },
