@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:fix": "eslint --fix ./*.js",
     "start:dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "husky install"
