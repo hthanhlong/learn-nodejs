@@ -1,22 +1,21 @@
-const { serviceCreateUser } = require("../services/register.service");
-const { serviceGetAllUsers } = require("../services/user.service");
+const { serviceGetAllUsers } = require('../services/user.service')
 
-const userController = async (req, res, next) => {
+const userController = async (req, res) => {
   try {
-    const users = await serviceGetAllUsers();
+    const users = await serviceGetAllUsers()
     if (users?.length > 0) {
       res.status(200).json({
-        message: "success",
+        message: 'success',
         users,
-      });
+      })
     }
   } catch (error) {
     res.status(400).json({
-      massage: "failed",
-    });
+      massage: 'failed',
+    })
   }
-};
+}
 
 module.exports = {
   userController,
-};
+}
