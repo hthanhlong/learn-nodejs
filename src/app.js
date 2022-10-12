@@ -29,7 +29,7 @@ app.use(
 
 //router
 app.use('/api', require('./routes/index'))
-
+const a = 1
 console.log('heello')
 
 // handle - Not Found
