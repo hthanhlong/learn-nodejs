@@ -1,23 +1,26 @@
 {
   "development": {
     "username": "sa",
-    "password": "123456789",
-    "database": "clinics",
+    "password": "<YourStrong@Passw0rd>",
+    "database": "water",
     "host": "localhost",
-    "dialect": "mssql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mssql",
+    "port": 1433,
+    "define": {
+      "timestamps": true,
+      "freezeTableName": false
+    }
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "sa",
+    "password": "<YourStrong@Passw0rd>",
+    "database": "clinics",
+    "host": "thuymythanhlong.com",
+    "dialect": "mssql",
+    "port": 1433,
+    "define": {
+      "timestamps": true,
+      "freezeTableName": true
+    }
   }
 }
