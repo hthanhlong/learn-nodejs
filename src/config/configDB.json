@@ -14,13 +14,13 @@
   "production": {
     "username": "sa",
     "password": "<YourStrong@Passw0rd>",
-    "database": "clinics",
+    "database": "water",
     "host": "thuymythanhlong.com",
     "dialect": "mssql",
     "port": 1433,
     "define": {
       "timestamps": true,
-      "freezeTableName": true
+      "freezeTableName": false
     }
   }
 }
