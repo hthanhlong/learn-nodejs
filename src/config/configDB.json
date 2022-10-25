@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "postgres",
+    "username": "sa",
     "password": "123456789",
     "database": "clinics",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "host": "localhost",
+    "dialect": "mssql"
   },
   "test": {
     "username": "root",

@@ -11,6 +11,7 @@ const compression = require('compression')
 const createError = require('http-errors')
 
 // connect DB
+
 connectDB()
 
 //middleware
