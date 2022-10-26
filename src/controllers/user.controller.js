@@ -1,18 +1,6 @@
-import { serviceCreateUser } from '../services/register.service'
 import { serviceGetUsers } from '../services/user.service'
 
 class UserController {
-  createUser = async (req, res, next) => {
-    const { body } = req
-    try {
-      const result = await serviceCreateUser(body)
-      if (!result) return res.status(404).json({ massage: 'failed' })
-      res.status(201).json({ massage: 'success' })
-    } catch (error) {
-      next()
-    }
-  }
-
   // getUser = async (req, res, next) => {}
 
   getUsers = async (req, res, next) => {
