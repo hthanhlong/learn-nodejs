@@ -1,13 +1,10 @@
 import express from 'express'
-import { login, refreshToken, register } from '../controllers/auth.controller'
-import { getAllUser } from '../controllers/user.controller'
-import { checkToken } from '../middleware/checkToken'
+import RouterV1 from './version1/index.js'
+// import RouterV2 from './version1/index.js'
 
 const rootRouter = express.Router()
 
-rootRouter.post('/login', login)
-rootRouter.post('/register', register)
-rootRouter.get('/users', checkToken, getAllUser)
-rootRouter.post('/token', refreshToken)
+rootRouter.use('/v1', RouterV1)
+// rootRouter.post('/v2', RouterV2)
 
 export default rootRouter

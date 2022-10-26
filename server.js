@@ -6,38 +6,30 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
 import createError from 'http-errors'
-import rootRouter from './src/routers'
+import rootRouter from './src/routers/index.js'
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 5000
 
 const main = async () => {
-  // connect DB
   await connectDB()
-
   //middleware
   app.use(cors({ origin: '*' }))
   app.use(express.json())
   app.use(helmet())
   app.use(morgan('combined'))
-  // // compress responses
   app.use(compression())
+  app.use(express.urlencoded({ extended: true }))
 
-  app.use(
-    express.urlencoded({
-      extended: true,
-    })
-  )
-
-  // //router
+  // router
   app.use('/api', rootRouter)
 
-  // // handle - Not Found
+  //handle - Not Found
   app.use((req, res, next) => {
     next(createError(404, 'Not Found'))
   })
 
-  // // middleware---handle error from server
+  // Handle error from server
   app.use((err, req, res) => {
     res.status(err.status || 500).json({
       status: err.status || 500,

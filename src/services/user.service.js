@@ -1,6 +1,6 @@
 import db from '../models'
 
-export const serviceGetAllUsers = async () => {
+export const serviceGetUsers = async () => {
   const users = await db.User.findAll({
     attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
   })

@@ -1,7 +1,7 @@
 import { hashPassword } from '../helper'
 import db from '../models'
 
-export const serviceCreateUser = async (data) => {
+export const serviceRegister = async (data) => {
   if (!data) return null
   const { email, password } = data
   const isUser = await db.User.findOne({
