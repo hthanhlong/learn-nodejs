@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import db from '../models/index.js'
-import * as _CONF from '../config/index.js'
+import { _CONF } from '../config/index.js'
 import jwt from 'jsonwebtoken'
 
 const tokenObject = {}
@@ -11,15 +11,13 @@ export const serviceLogin = async (body) => {
   const isUser = await db.User.findOne({
     where: { email: email },
   })
+  const hashPassword = isUser.dataValues.password
   if (!isUser) return null
-  const isMatchedPassword = bcrypt.compareSync(
-    password,
-    isUser.dataValues.password
-  )
+  const isMatchedPassword = bcrypt.compareSync(password, hashPassword)
   if (!isMatchedPassword) return null
-
-  payload.username = isUser?.email
-  payload.role = isUser?.roleId
+  const roleName = isUser?.dataValues.role || 'admin'
+  payload.username = isUser?.dataValues.email
+  payload.role = roleName
 
   const accessToken = jwt.sign(payload, _CONF.SECRET, {
     expiresIn: _CONF.tokenLife,
@@ -31,8 +29,8 @@ export const serviceLogin = async (body) => {
 
   tokenObject.refreshToken = refreshToken
   const response = {
-    status: 'Logged in',
-    roles: [isUser.roleId],
+    email: isUser?.dataValues.email,
+    roles: roleName,
     accessToken: accessToken,
     refreshToken: refreshToken,
   }

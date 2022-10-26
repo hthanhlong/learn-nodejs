@@ -1,4 +1,4 @@
-export const config = Object.freeze({
+export const _CONF = Object.freeze({
   SECRET: 'SECRET_ANONYSTICK',
   SECRET_REFRESH: 'SECRET_REFRESH_ANONYSTICK',
   tokenLife: 10,

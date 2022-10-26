@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import express from 'express'
 import cors from 'cors'
 import connectDB from './src/config/connectDb.js'
@@ -5,7 +6,6 @@ import dotenv from 'dotenv'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
-import createError from 'http-errors'
 import rootRouter from './src/routers/index.js'
 dotenv.config()
 const app = express()
@@ -26,11 +26,12 @@ const main = async () => {
 
   //handle - Not Found
   app.use((req, res, next) => {
-    next(createError(404, 'Not Found'))
+    res.status(404).json({ message: 'Not Found' })
+    next()
   })
 
   // Handle error from server
-  app.use((err, req, res) => {
+  app.use((err, res, req, next) => {
     res.status(err.status || 500).json({
       status: err.status || 500,
       message: err.message || '',
