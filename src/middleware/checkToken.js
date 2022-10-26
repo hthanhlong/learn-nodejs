@@ -1,15 +1,12 @@
 import jwt from 'jsonwebtoken'
 import _CONF from '../config'
 
-module.exports = (req, res, next) => {
+export const checkToken = (req, res, next) => {
   const token = req.headers['authorization']
-  console.log('🚀 ~ file: checkToken.js ~ line 6 ~ token', token)
   if (token) {
     jwt.verify(token, _CONF.SECRET, function (err, decoded) {
       if (err) {
-        return res
-          .status(401)
-          .json({ error: true, message: 'Unauthorized access.', err })
+        return res.status(401).json({ error: true, message: 'Unauthorized access.', err })
       }
       req.decoded = decoded
       next()

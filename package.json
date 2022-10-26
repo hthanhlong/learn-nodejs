@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "commonjs",
   "scripts": {
     "lint": "eslint --fix --ext .js,.jsx .",
     "start:dev": "nodemon --exec babel-node server.js",
@@ -42,6 +43,7 @@
     "@babel/core": "^7.19.6",
     "@babel/node": "^7.19.1",
     "@babel/preset-env": "^7.19.4",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.25.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",

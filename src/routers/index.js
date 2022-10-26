@@ -1,14 +1,13 @@
 import express from 'express'
-import { loginController } from '../controllers/login.controller.js'
-import { refreshTokenController } from '../controllers/refreshtoken.controller'
-import { createUserController } from '../controllers/register.controller'
-import { userController } from '../controllers/user.controller'
-import checkToken from '../middleware/checkToken'
-const router = express.Router()
+import { login, refreshToken, register } from '../controllers/auth.controller'
+import { getAllUser } from '../controllers/user.controller'
+import { checkToken } from '../middleware/checkToken'
 
-router.post('/login', loginController)
-router.post('/register', createUserController)
-router.get('/refresh-token', checkToken, userController)
-router.post('/token', refreshTokenController)
+const rootRouter = express.Router()
 
-export default router
+rootRouter.post('/login', login)
+rootRouter.post('/register', register)
+rootRouter.get('/users', checkToken, getAllUser)
+rootRouter.post('/token', refreshToken)
+
+export default rootRouter
