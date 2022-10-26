@@ -1,6 +1,6 @@
-const { serviceCreateUser } = require('../services/register.service')
+import { serviceCreateUser } from '../services/register.service'
 
-const createUserController = async (req, res) => {
+export const createUserController = async (req, res) => {
   const { body } = req
   try {
     await serviceCreateUser(body)
@@ -14,8 +14,4 @@ const createUserController = async (req, res) => {
   res.status(201).json({
     massage: 'success',
   })
-}
-
-module.exports = {
-  createUserController,
 }

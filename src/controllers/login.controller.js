@@ -1,6 +1,6 @@
-const { serviceLogin } = require('../services/login.service')
+import { serviceLogin } from '../services/login.service.js'
 
-const loginController = async (req, res) => {
+export const loginController = async (req, res) => {
   const { body } = req
   const result = await serviceLogin(body)
   if (result) {
@@ -8,8 +8,4 @@ const loginController = async (req, res) => {
   } else {
     return res.status(400).json({ elements: 'Login failed!!!' })
   }
-}
-
-module.exports = {
-  loginController,
 }

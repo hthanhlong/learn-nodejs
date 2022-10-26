@@ -4,7 +4,7 @@ require('dotenv').config()
 const env = process.env.NODE_ENV || 'development'
 
 const config =
-  require(path.join(__dirname, '..', 'config', 'configDB.json'))[env] ||
+  require(path.join(__dirname, '..', 'config', 'configDB.js'))[env] ||
   'development'
 
 const sequelize = new Sequelize(
@@ -23,4 +23,4 @@ const connectDB = async () => {
   }
 }
 
-module.exports = connectDB
+export default connectDB

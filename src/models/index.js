@@ -1,16 +1,17 @@
 'use strict'
-
 const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
 const process = require('process')
 const basename = path.basename(__filename)
+const configDB = require('../config/configDB.js')
 require('dotenv').config()
 const env = process.env.NODE_ENV || 'development'
-const config = require(__dirname + '/../config/configDB.json')[env]
+const config = configDB[env]
+
 const db = {}
 let sequelize
-if (config.use_env_variable) {
+if (config?.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config)
 } else {
   sequelize = new Sequelize(
@@ -44,6 +45,6 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-module.exports = db
+export default db
 
 //npx sequelize-cli model:generate --name User --attributes email:string,password:string,firstname:string,lastname:string,address:string,phoneNumber:string,gender:boolean,image:string,roleId:string,positionId:string

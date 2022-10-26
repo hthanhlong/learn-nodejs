@@ -1,6 +1,6 @@
-const { serviceGetAllUsers } = require('../services/user.service')
+import { serviceGetAllUsers } from '../services/user.service'
 
-const userController = async (req, res) => {
+export const userController = async (req, res) => {
   try {
     const users = await serviceGetAllUsers()
     if (users?.length > 0) {
@@ -14,8 +14,4 @@ const userController = async (req, res) => {
       massage: 'failed',
     })
   }
-}
-
-module.exports = {
-  userController,
 }

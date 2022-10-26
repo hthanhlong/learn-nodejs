@@ -1,23 +1,23 @@
-const jwt = require("jsonwebtoken");
-const _CONF = require("../config");
+import jwt from 'jsonwebtoken'
+import _CONF from '../config'
 
 module.exports = (req, res, next) => {
-  const token = req.headers["authorization"];
-  console.log("🚀 ~ file: checkToken.js ~ line 6 ~ token", token)
+  const token = req.headers['authorization']
+  console.log('🚀 ~ file: checkToken.js ~ line 6 ~ token', token)
   if (token) {
     jwt.verify(token, _CONF.SECRET, function (err, decoded) {
       if (err) {
         return res
           .status(401)
-          .json({ error: true, message: "Unauthorized access.", err });
+          .json({ error: true, message: 'Unauthorized access.', err })
       }
-      req.decoded = decoded;
-      next();
-    });
+      req.decoded = decoded
+      next()
+    })
   } else {
     return res.status(403).send({
       error: true,
-      message: "No token provided.",
-    });
+      message: 'No token provided.',
+    })
   }
-};
+}

@@ -1,13 +1,9 @@
-const db = require("../models/index.js");
+import db from '../models'
 
-const serviceGetAllUsers = async () => {
+export const serviceGetAllUsers = async () => {
   const users = await db.User.findAll({
-    attributes: { exclude: ["password", "createdAt", "updatedAt"] },
-  });
-  if (!users) return null;
-  return users;
-};
-
-module.exports = {
-  serviceGetAllUsers,
-};
+    attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+  })
+  if (!users) return null
+  return users
+}

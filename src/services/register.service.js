@@ -1,7 +1,7 @@
-const { hashPassword } = require('../helper/index.js')
-const db = require('../models/index.js')
+import { hashPassword } from '../helper'
+import db from '../models'
 
-const serviceCreateUser = async (data) => {
+export const serviceCreateUser = async (data) => {
   if (!data) return null
   const { email, password } = data
   const isUser = await db.User.findOne({
@@ -12,8 +12,4 @@ const serviceCreateUser = async (data) => {
   const newData = { ...data, password: newPassword }
   const result = await db.User.create(newData)
   return result
-}
-
-module.exports = {
-  serviceCreateUser,
 }

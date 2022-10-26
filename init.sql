@@ -1,2 +1,2 @@
-CREATE DATABASE clinics
+CREATE DATABASE water
 GO

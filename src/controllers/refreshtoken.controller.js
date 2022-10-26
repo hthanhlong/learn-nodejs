@@ -1,6 +1,6 @@
-const { serviceRefreshToken } = require('../services/login.service')
+import { serviceRefreshToken } from '../services/login.service'
 
-const refreshTokenController = async (req, res) => {
+export const refreshTokenController = async (req, res) => {
   // refresh the damn token
   const { refreshToken } = req.body
   // if refresh token exists
@@ -10,8 +10,4 @@ const refreshTokenController = async (req, res) => {
   } else {
     res.status(400).send('Invalid request')
   }
-}
-
-module.exports = {
-  refreshTokenController,
 }

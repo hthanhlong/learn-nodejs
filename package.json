@@ -2,10 +2,10 @@
   "name": "learn-express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "lint": "eslint --fix --ext .js,.jsx .",
-    "start:dev": "nodemon server.js",
+    "start:dev": "nodemon --exec babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "husky install"
   },
@@ -39,6 +39,9 @@
     "tedious": "^15.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.4",
     "eslint": "^8.25.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
