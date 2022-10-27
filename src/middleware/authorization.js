@@ -1,10 +1,12 @@
+import createHttpError from 'http-errors'
+
 export const authorization = (...roles) => {
   return (req, res, next) => {
     const { user } = req
     if (user && roles.includes(user.role)) {
       next()
     } else {
-      res.status(403).json({ message: 'Forbidden' })
+      next(createHttpError(403))
     }
   }
 }

@@ -6,8 +6,8 @@ class UserController {
   getUsers = async (req, res, next) => {
     try {
       const result = await serviceGetUsers()
-      if (!result) return res.status(404).json({ massage: 'failed' })
-      res.status(200).json({ message: 'success', data: result })
+      if (!result) return res.status(200).json({ error: true, massage: 'failed' })
+      res.status(200).json({ ...result })
     } catch (error) {
       next()
     }

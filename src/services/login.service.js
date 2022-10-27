@@ -11,8 +11,8 @@ export const serviceLogin = async (body) => {
   const isUser = await db.User.findOne({
     where: { email: email },
   })
-  const hashPassword = isUser.dataValues.password
   if (!isUser) return null
+  const hashPassword = isUser.dataValues.password
   const isMatchedPassword = bcrypt.compareSync(password, hashPassword)
   if (!isMatchedPassword) return null
   const roleName = isUser?.dataValues.role || 'admin'

@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
 import rootRouter from './routers/index.js'
+import createHttpError from 'http-errors'
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -26,16 +27,15 @@ const main = async () => {
 
   //handle - Not Found
   app.use((req, res, next) => {
-    res.status(404).json({ message: 'Not Found' })
-    next()
+    next(createHttpError(404))
   })
 
   // Handle error from server
-  app.use((err, res, req, next) => {
-    res.status(err.status || 500).json({
-      status: err.status || 500,
-      message: err.message || '',
-    })
+  app.use((err, req, res, next) => {
+    console.log('error.massage', err.message)
+    const statusCode = err.status || 500
+    const message = createHttpError(statusCode)
+    res.status(statusCode).json({ status: statusCode, ...message })
   })
 
   app.listen(PORT, () => console.log('app listen on PORT ====> ', PORT))

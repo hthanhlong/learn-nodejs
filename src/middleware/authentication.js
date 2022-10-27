@@ -1,21 +1,19 @@
+import createHttpError from 'http-errors'
 import jwt from 'jsonwebtoken'
-import _CONF from '../config/index.js'
+import { _CONF } from '../config/index'
 
 export const authentication = (req, res, next) => {
   const token = req.headers['authorization']
   if (token) {
     jwt.verify(token, _CONF.SECRET, function (err, decoded) {
       if (err) {
-        return res.status(401).json({ error: true, message: 'Unauthorized access.', err })
+        next(createHttpError(401))
       }
       req.decoded = decoded
       req.user = decoded.user
       next()
     })
   } else {
-    return res.status(403).json({
-      error: true,
-      message: 'No token provided.',
-    })
+    next(createHttpError(403))
   }
 }
