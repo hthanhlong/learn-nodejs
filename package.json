@@ -7,6 +7,7 @@
   "scripts": {
     "lint": "eslint --fix --ext .js,.jsx .",
     "start:dev": "nodemon --exec babel-node server.js",
+    "server": "babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "husky install"
   },
