@@ -6,9 +6,11 @@
   "type": "commonjs",
   "scripts": {
     "lint": "eslint --fix --ext .js,.jsx .",
-    "start:dev": "nodemon --exec babel-node server.js",
-    "server": "babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon --exec babel-node src/server.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel ./src -d ./build/src",
+    "production": "npm run build && node ./build/src/server.js",
+    "build": "npm run clean && npm run build-babel",
     "postinstall": "husky install"
   },
   "lint-staged": {
@@ -41,6 +43,7 @@
     "tedious": "^15.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.19.3",
     "@babel/core": "^7.19.6",
     "@babel/node": "^7.19.1",
     "@babel/preset-env": "^7.19.4",
