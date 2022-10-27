@@ -13,7 +13,7 @@ export const authentication = (req, res, next) => {
       next()
     })
   } else {
-    return res.status(403).send({
+    return res.status(403).json({
       error: true,
       message: 'No token provided.',
     })
