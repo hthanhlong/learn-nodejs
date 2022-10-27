@@ -9,7 +9,7 @@
     "start:dev": "nodemon --exec babel-node src/server.js",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel ./src -d ./build/src",
-    "production": "npm run build && node ./build/src/server.js",
+    "production": "npm run build && pm2 start ./build/src/server.js",
     "build": "npm run clean && npm run build-babel",
     "postinstall": "husky install"
   },
