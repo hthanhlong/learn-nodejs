@@ -1,7 +1,7 @@
 import createHttpError from 'http-errors'
 import { serviceLogin, serviceRefreshToken } from '../services/login.service'
 import { serviceRegister } from '../services/register.service'
-import loginSchema from '../validateData/loginSchema'
+import loginSchema from '../validateSchema/loginSchema'
 
 class AuthController {
   login = async (req, res, next) => {
